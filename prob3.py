@@ -7,7 +7,7 @@ arr = []
 def largest_prime_fact(number):
     if number == 0 or number == 1:
         print('number must be greater or equal to 2')
-    if number % 2 == 0:
+    elif number % 2 == 0:
         if number == 2:
             print(2)
         else:
