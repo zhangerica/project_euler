@@ -5,19 +5,17 @@ def is_palindrome(number):
     if number < 0:
         print('number must be nonnegative')
     elif number // 10 == 0:
-       #print True
-       return 1
+       return True
     else:
         last = number % 10
         first = first_digit(number)[0]
         num_dig = first_digit(number)[1]
-#        print first, last
         if first == last:
             truncated = truncate(number, first, num_dig)
-            is_palindrome(truncated)
+            print truncated
+            return is_palindrome(truncated)
         else:
-            #print False
-            return 0
+            return False
             
 def truncate(number, first, num_dig):
     return (number - first * 10 ** (num_dig - 1) - number % 10) / 10
@@ -34,9 +32,13 @@ def first_digit(number):
         num_dig = i
         return first, num_dig
 """
+arr = []
 for i in range(100, 1000):
     for j in range(100, 1000):
         if is_palindrome(i*j):
             print True
+            arr.append(i*j)
+
+print arr
 """
-print is_palindrome(696)
+print truncate(7017, 7, 4)
