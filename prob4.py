@@ -7,9 +7,9 @@ def is_palindrome(number):
     elif number // 10 == 0:
        return True
     else:
-        return is_array_palindrome(separate_digits(number))
+        return is_list_palindrome(list_of_digits(number))
 
-def separate_digits(number):
+def list_of_digits(number):
     digits = []
     while number > 9:
         last = number % 10
@@ -18,19 +18,19 @@ def separate_digits(number):
     digits.append(number)
     return digits
 
-def is_array_palindrome(digits):
-    if digits == [] or len(digits) == 1:
+def is_list_palindrome(list):
+    if list == [] or len(list) == 1:
         return True
     else:
-        while digits[0] == digits[-1]:
-            return is_array_palindrome(digits[1:-1])
+        while list[0] == list[-1]:
+            return is_list_palindrome(list[1:-1])
     return False
 
-arr = []
+list = []
+
 for i in range(100, 1000):
     for j in range(100, 1000):
         if is_palindrome(i*j):
-            print True
-            arr.append(i*j)
+            list.append(i*j)
 
-print max(arr)
+print max(list)
