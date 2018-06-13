@@ -7,31 +7,25 @@ def is_palindrome(number):
     elif number // 10 == 0:
        return True
     else:
-        last = number % 10
-        first = first_digit(number)[0]
-        num_dig = first_digit(number)[1]
-        if first == last:
-            truncated = truncate(number, first, num_dig)
-            print truncated
-            return is_palindrome(truncated)
-        else:
-            return False
-            
-def truncate(number, first, num_dig):
-    return (number - first * 10 ** (num_dig - 1) - number % 10) / 10
+        return is_array_palindrome(separate_digits(number))
 
-def first_digit(number):
-    if number == 0:
-        print('must be a natural number')
+def separate_digits(number):
+    digits = []
+    while number > 9:
+        last = number % 10
+        digits.append(last)
+        number = number // 10
+    digits.append(number)
+    return digits
+
+def is_array_palindrome(digits):
+    if digits == [] or len(digits) == 1:
+        return True
     else:
-        i, digits = 1, number
-        while digits // 10:
-            digits = digits // 10
-            i += 1
-        first = digits % 10
-        num_dig = i
-        return first, num_dig
-"""
+        while digits[0] == digits[-1]:
+            return is_array_palindrome(digits[1:-1])
+    return False
+
 arr = []
 for i in range(100, 1000):
     for j in range(100, 1000):
@@ -39,6 +33,4 @@ for i in range(100, 1000):
             print True
             arr.append(i*j)
 
-print arr
-"""
-print truncate(7017, 7, 4)
+print max(arr)
