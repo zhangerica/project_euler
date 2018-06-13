@@ -4,7 +4,7 @@
 def is_palindrome(number):
     if number < 0:
         print('number must be nonnegative')
-    elif number // 10 == 0:
+    elif number < 10:
        return True
     else:
         return is_list_palindrome(list_of_digits(number))
